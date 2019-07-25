@@ -22,7 +22,7 @@ public class FoodListEntity {
     /**
      * 所属菜系名
      */
-    private int foodTypeName;
+    private String typeName;
     /**
      * 菜品普通价格
      */
@@ -51,12 +51,12 @@ public class FoodListEntity {
         this.foodName = foodName;
     }
 
-    public int getFoodTypeName() {
-        return foodTypeName;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setFoodTypeName(int foodTypeName) {
-        this.foodTypeName = foodTypeName;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public double getPrice() {
@@ -85,7 +85,7 @@ public class FoodListEntity {
         }
         FoodListEntity that = (FoodListEntity) o;
         return id == that.id &&
-                foodTypeName == that.foodTypeName &&
+                typeName == that.typeName &&
                 Double.compare(that.price, price) == 0 &&
                 Double.compare(that.memberPrice, memberPrice) == 0 &&
                 Objects.equals(foodName, that.foodName);
@@ -93,7 +93,7 @@ public class FoodListEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, foodName, foodTypeName, price, memberPrice);
+        return Objects.hash(id, foodName, typeName, price, memberPrice);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class FoodListEntity {
         return "FoodListEntity{" +
                 "id=" + id +
                 ", foodName='" + foodName + '\'' +
-                ", foodTypeName=" + foodTypeName +
+                ", foodTypeName=" + typeName +
                 ", price=" + price +
                 ", memberPrice=" + memberPrice +
                 '}';

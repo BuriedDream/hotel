@@ -52,7 +52,7 @@ public interface FoodDaoInterface {
      * @param keyword
      * @return
      */
-    List<Food> query(String keyword);
+    List<FoodListEntity> query(String keyword);
 
     /**
      * 查询指定菜系的所有菜品
@@ -67,6 +67,11 @@ public interface FoodDaoInterface {
      */
     void getAll(PageBean<Food> foodPageBean);
 
+    /**
+     * 后台的到分页
+     * @param pageBean
+     */
+    void getListAll(PageBean<FoodListEntity> pageBean);
 
     /**
      * 查询总记录数

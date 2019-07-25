@@ -1,4 +1,4 @@
-﻿
+﻿	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<!-- 包含公共的JSP代码片段 -->

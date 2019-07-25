@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.Date;
+import org.junit.Test;
 
 /**
  * @title: hotel
- * @ClassName Test.java
+ * @ClassName Tests.java
  * @Description:
  * @Author: liam
  * @Date: 2019/7/24
  * @Version: 1.0
  **/
-public class Test extends BaseServlet implements Cloneable{
+public class Tests extends BaseServlet implements Cloneable{
 
-    @org.junit.Test
-    public void test(HttpServletRequest request, HttpServletResponse response) {
+    @Test
+    public void test() {
 //        FoodDaoImpl dao = new FoodDaoImpl();
 //        for (int i = 0; i < 20; i++) {
 //            Food food = new Food();
@@ -34,7 +35,7 @@ public class Test extends BaseServlet implements Cloneable{
 //            dao.add(food);
 //        }
 
-        String path = getServletContext().getContextPath()+"/image";
+        String path = this.getServletContext().getContextPath()+"/image";
         System.out.println(getServletContext().getContextPath()+"/image");
     }
 }

@@ -1,6 +1,7 @@
 package cn.gluttonous.hotel.service;
 
 import cn.gluttonous.hotel.entity.Food;
+import cn.gluttonous.hotel.entity.FoodListEntity;
 import cn.gluttonous.hotel.utils.PageBean;
 
 import java.util.List;
@@ -40,6 +41,12 @@ public interface FoodServiceInterface {
     void getAll(PageBean<Food> pageBean);
 
     /**
+     * 后台的到分页
+     * @param pageBean
+     */
+    void getListAll(PageBean<FoodListEntity> pageBean);
+
+    /**
      * 获取指定菜品
      * @param id
      * @return
@@ -58,11 +65,11 @@ public interface FoodServiceInterface {
      * @param keyName
      * @return
      */
-    List<Food> query(String keyName);
+    List<FoodListEntity> query(String keyName);
 
     /**
      * 查找所有菜品
      * @return
      */
-    List<Food> query();
+    List<FoodListEntity> query();
 }

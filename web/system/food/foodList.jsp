@@ -53,22 +53,17 @@
 		<!--显示数据列表 -->
 		<tbody id="TableData">
 		<c:choose>
-			<c:when test="${not empty requestScope.foods}">
-				<c:forEach var="food" items="${requestScope.foods}" varStatus="vs">
+			<c:when test="${not empty requestScope.pageBean.pageData}">
+				<c:forEach var="food" items="${requestScope.pageBean.pageData}" varStatus="vs">
 					<tr class="TableDetail1">
 						<td align="center">${vs.count}</td>
 						<td align="center">${food.foodName}</td>
-						<c:forEach items="${ requestScope.foodTypes}" var="foodType" >
-							<c:if test="${food.foodTypeId==foodType.id }">
-								<c:set var="typeName" value="${foodType.typeName}"/>
-							</c:if>
-						</c:forEach>
-						<td><c:out value="${typeName}"></c:out></td>
-						<td>${food.price}</td>
-						<td>${food.memberPrice}</td>
-						<td>
-							<a href="${pageContext.request.contextPath}/food?method=show&id=${food.id}"  class="FunctionButton">更新</a>
-							<a href="${pageContext.request.contextPath}/food?method=delete&id=${food.id}" onClick="return delConfirm();"class="FunctionButton">删除</a>
+						<td align="center">${food.typeName}</td>
+						<td align="center">${food.price}</td>
+						<td align="center">${food.memberPrice}</td>
+						<td align="center">
+							<a align="center" href="${pageContext.request.contextPath}/food?method=show&id=${food.id}"  class="FunctionButton">更新</a>
+							<a align="center" href="${pageContext.request.contextPath}/food?method=delete&id=${food.id}" onClick="return delConfirm();"class="FunctionButton">删除</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -85,8 +80,14 @@
 	
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">
-		<div class="FunctionButton"><a href="saveFood.html">添加</a></div>
-    </div> 
+		<div class="FunctionButton"><a href="${pageContext.request.contextPath }/food?method=findFoodType">添加</a></div>
+		当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
+		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=1">首页</a>
+		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
+		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
+		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+    </div>
+
 </div>
 </body>
 </html>

@@ -40,14 +40,17 @@ public abstract class BaseServlet extends HttpServlet {
         try {
             Method method = clazz.getDeclaredMethod(methodName, HttpServletRequest.class,HttpServletResponse.class);
             uri = method.invoke(this,request,response);
-        } catch (NoSuchMethodException e) {
-            //uri = "/error/error.jsp";
+        }  catch (NoSuchMethodException e) {
+            uri = "/error/error.jsp";
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-            //uri = "/error/error.jsp";
+            uri = "/error/error.jsp";
+        }catch (Exception e){
+            e.printStackTrace();
+            uri = "/error/error.jsp";
         }
         //跳转
         WebUtils.goTo(request,response,uri);

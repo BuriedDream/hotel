@@ -2,6 +2,7 @@ package cn.gluttonous.hotel.service.impl;
 
 import cn.gluttonous.hotel.dao.FoodDaoInterface;
 import cn.gluttonous.hotel.entity.Food;
+import cn.gluttonous.hotel.entity.FoodListEntity;
 import cn.gluttonous.hotel.factory.impl.BeanFactory;
 import cn.gluttonous.hotel.service.FoodServiceInterface;
 import cn.gluttonous.hotel.utils.PageBean;
@@ -64,6 +65,16 @@ public class FoodServiceImpl implements FoodServiceInterface {
     }
 
     /**
+     * 后台的到分页
+     *
+     * @param pageBean
+     */
+    @Override
+    public void getListAll(PageBean<FoodListEntity> pageBean) {
+        foodDao.getListAll(pageBean);
+    }
+
+    /**
      * 获取指定菜品
      *
      * @param id
@@ -93,7 +104,7 @@ public class FoodServiceImpl implements FoodServiceInterface {
      * @return
      */
     @Override
-    public List<Food> query(String keyName) {
+    public List<FoodListEntity> query(String keyName) {
         return foodDao.query(keyName);
     }
 
@@ -103,7 +114,7 @@ public class FoodServiceImpl implements FoodServiceInterface {
      * @return
      */
     @Override
-    public List<Food> query() {
+    public List<FoodListEntity> query() {
         return foodDao.query();
     }
 }
