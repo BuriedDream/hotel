@@ -5,8 +5,7 @@
      <property name="user">root</property> 
      <property name="password"></property>
      <property name="initialPoolSize">5</property> 
-     <property name="maxPoolSize">10</property> 
-
+     <property name="maxPoolSize">10</property>
   </default-config>
 
 
@@ -14,7 +13,7 @@
     <property name="driverClass">com.mysql.jdbc.Driver</property> 
      <property name="jdbcUrl">jdbc:mysql:///hotel</property>
      <property name="user">root</property> 
-     <property name="password">root</property> 
+     <property name="password"></property>
      <property name="initialPoolSize">5</property> 
      <property name="maxPoolSize">10</property> 
    </named-config>
