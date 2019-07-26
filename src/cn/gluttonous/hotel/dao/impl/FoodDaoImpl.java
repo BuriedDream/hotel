@@ -112,7 +112,7 @@ public class FoodDaoImpl implements FoodDaoInterface {
      */
     @Override
     public List<FoodListEntity> query(String keyword) {
-        String sel_select = "SELECT * FROM food WHERE foodName=?";
+        String sel_select = "SELECT * FROM food WHERE foodName LIKE ?";
         try {
             return JdbcUtils.getQueryRunner().query(sel_select,new BeanListHandler<FoodListEntity>(FoodListEntity.class),"%"+keyword+"%");
         } catch (SQLException e) {

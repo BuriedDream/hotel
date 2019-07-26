@@ -131,4 +131,18 @@ public class FoodTypeServlet extends BaseServlet {
         return uri;
     }
 
+    public Object search(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        //返回跳转
+        Object uri = null;
+
+        //获取请求数据并封装
+        String keyword = request.getParameter("keyword");
+        List<FoodType> foodTypes = foodTypeService.getAll(keyword);
+        request.setAttribute("foodTypeList",foodTypes);
+
+        uri = request.getRequestDispatcher("/system/foodType/cuisineList.jsp");
+        return uri;
+    }
+
 }

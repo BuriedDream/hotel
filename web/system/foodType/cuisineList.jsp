@@ -29,7 +29,7 @@
 	</div>
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="/wirelessplatform/cuisine.html" method="get">
+		<form action="${pageContext.request.contextPath}/foodType" method="get">
 			<input type="hidden" name="method" value="search">
 			<input type="text" name="keyword" title="请输入菜系名称">
 			<input type="submit" value="搜索">

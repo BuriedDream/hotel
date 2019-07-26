@@ -126,4 +126,18 @@ public class DinnerTableServlet extends BaseServlet {
         uri = request.getRequestDispatcher("/dinnerTable?method=list");
         return uri;
     }
+
+    public Object search(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Object uri = null;
+
+        String keyword = request.getParameter("keyword");
+
+        List<DinnerTable> list = dinnerTableService.query(keyword);
+        request.setAttribute("list",list);
+
+        uri = request.getRequestDispatcher("/system/dinnerTable/boardList.jsp");
+
+        return uri;
+    }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -9,10 +10,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../style/js/jquery.js"></script>
-<script type="text/javascript" src="../style/js/page_common.js"></script>
-<link href="../style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../style/css/index_1.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/system/style/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/system/style/js/page_common.js"></script>
+<link href="${pageContext.request.contextPath}/system/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/style/css/index_1.css" />
 </head>
 <body>
 	<!-- 页面标题 -->
@@ -40,24 +41,23 @@
 			</thead>
 			<!--显示数据列表 -->
 			<tbody id="TableData">
-				
-			 		<tr height="60">
-				 		<td>烤乳猪</td>
-				 		<td>68.0</td>
-				 		<td>1</td>
-			 		</tr>
-			 	
-			 		<tr height="60">
-				 		<td>烤乳猪</td>
-				 		<td>68.0</td>
-				 		<td>1</td>
-			 		</tr>
-			 	
-			 		<tr height="60">
-				 		<td>白切鸡</td>
-				 		<td>68.0</td>
-				 		<td>1</td>
-			 		</tr>
+
+			<c:choose>
+				<c:when test="${not empty requestScope.details}">
+					<c:forEach items="${requestScope.details}" var="detail">
+						<tr height="60">
+							<td align="center">${detail.foodName}</td>
+							<td align="center">${detail.price}</td>
+							<td align="center">${detail.foodCount}</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr hight="60">
+						<td colspan="6" align="center">没有下单任何菜！</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 			 	
 			</tbody>
 		</table>

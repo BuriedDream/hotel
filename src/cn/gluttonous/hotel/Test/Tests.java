@@ -19,7 +19,7 @@ import org.junit.Test;
  * @Date: 2019/7/24
  * @Version: 1.0
  **/
-public class Tests extends BaseServlet implements Cloneable{
+public class Tests{
 
     @Test
     public void test() {
@@ -35,7 +35,9 @@ public class Tests extends BaseServlet implements Cloneable{
 //            dao.add(food);
 //        }
 
-        String path = this.getServletContext().getContextPath()+"/image";
-        System.out.println(getServletContext().getContextPath()+"/image");
+//        String path = this.getServletContext().getContextPath()+"/image";
+//        System.out.println(getServletContext().getContextPath()+"/image");
+
+        System.out.println(Integer.MAX_VALUE);
     }
 }

@@ -114,9 +114,9 @@ public class DinnerTableDaoImpl implements DinnerTableDaoInterface {
      */
     @Override
     public List<DinnerTable> query(String keyWord) {
-        String sql_query = "SELECT * FROM dinnerTable WHERE tableName=?";
+        String sql_query = "SELECT * FROM dinnerTable WHERE tableName LIKE ?";
         try {
-            return JdbcUtils.getQueryRunner().query(sql_query,new BeanListHandler<DinnerTable>(DinnerTable.class));
+            return JdbcUtils.getQueryRunner().query(sql_query,new BeanListHandler<DinnerTable>(DinnerTable.class),"%"+keyWord+"%");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -105,7 +105,7 @@ public class FoodTypeDaoImpl implements FoodTypeDaoInterface {
      */
     @Override
     public List<FoodType> getAll(String typeName) {
-        String sql_findById = "SELECT * FROM foodType WHERE typeName=?";
+        String sql_findById = "SELECT * FROM foodType WHERE typeName LIKE ?";
         try {
             return JdbcUtils.getQueryRunner().query(sql_findById,new BeanListHandler<FoodType>(FoodType.class),"%"+typeName+"%");
         } catch (SQLException e) {

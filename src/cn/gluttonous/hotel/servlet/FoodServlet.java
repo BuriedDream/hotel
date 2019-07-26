@@ -13,7 +13,6 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -179,11 +178,7 @@ public class FoodServlet extends BaseServlet {
                                 (name));
 
                         // a2. 拼接文件名
-                        File file = new File(path, name);
-                        // d. 上传
-                        if (!file.isDirectory()) {
-                            item.write(file);
-                        }
+                        item.write(new File(path,name));
                         item.delete(); // 删除组件运行时产生的临时文件
                     }else{
                         int id = food.getId();
