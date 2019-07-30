@@ -96,9 +96,21 @@ public class DinnerTableServlet extends BaseServlet {
         request.setAttribute("list",list);
 
         // 将餐桌列表存到context里传到前台显示
-        request.getServletContext().setAttribute("table", list);
+        //request.getServletContext().setAttribute("table", list);
 
         uri = request.getRequestDispatcher("/system/dinnerTable/boardList.jsp");
+
+        return uri;
+    }
+
+    public Object listNoBook(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Object uri = null;
+
+        List<DinnerTable> list = dinnerTableService.query(0);
+        request.setAttribute("table",list);
+
+        uri = request.getRequestDispatcher("/application/index.jsp");
 
         return uri;
     }

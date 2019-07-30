@@ -47,6 +47,13 @@ public interface DinnerTableServiceInterface {
     List<DinnerTable> query(String keyword);
 
     /**
+     * 查找指定状态的餐桌
+     * @param state
+     * @return
+     */
+    List<DinnerTable> query(int state);
+
+    /**
      * 改变餐桌状态
      * @param id
      * @return

@@ -68,6 +68,12 @@ public interface FoodServiceInterface {
     List<FoodListEntity> query(String keyName);
 
     /**
+     * 模糊查询分页
+     * @param pageBean
+     * @param keyword
+     */
+    void query(PageBean<FoodListEntity> pageBean, String keyword);
+    /**
      * 查找所有菜品
      * @return
      */

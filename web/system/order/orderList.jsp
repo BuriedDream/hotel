@@ -64,10 +64,10 @@
 								<td align="center">${order.totalPrice}</td>
 								<c:choose >
 									<c:when test="${order.orderStatus==0}">
-										<td>未结账</td>
+										<td align="center">未结账</td>
 									</c:when>
 									<c:otherwise>
-										<td>已结账</td>
+										<td align="center">已结账</td>
 									</c:otherwise>
 								</c:choose>
 

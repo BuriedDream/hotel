@@ -53,6 +53,11 @@ public interface FoodDaoInterface {
      * @return
      */
     List<FoodListEntity> query(String keyword);
+    /**
+     * 模糊查询分页
+     * @param pageBean
+     */
+    void query(PageBean<FoodListEntity> pageBean, String keyword);
 
     /**
      * 查询指定菜系的所有菜品

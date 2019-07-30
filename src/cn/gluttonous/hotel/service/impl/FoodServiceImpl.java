@@ -109,6 +109,17 @@ public class FoodServiceImpl implements FoodServiceInterface {
     }
 
     /**
+     * 模糊查询分页
+     *
+     * @param pageBean
+     * @param keyword
+     */
+    @Override
+    public void query(PageBean<FoodListEntity> pageBean, String keyword) {
+        foodDao.query(pageBean,keyword);
+    }
+
+    /**
      * 查找所有菜品
      *
      * @return

@@ -33,6 +33,9 @@ public abstract class BaseServlet extends HttpServlet {
 
         //获取方法名
         String methodName = request.getParameter("method");
+        if(methodName == null){
+            methodName = "listNoBook";
+        }
 
         //当前执行类的Class文件
         Class clazz = this.getClass();

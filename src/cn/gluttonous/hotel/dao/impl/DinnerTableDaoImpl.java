@@ -121,4 +121,20 @@ public class DinnerTableDaoImpl implements DinnerTableDaoInterface {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 获取指定状态的餐桌
+     *
+     * @param state
+     * @return
+     */
+    @Override
+    public List<DinnerTable> queryByStatus(int state) {
+        String sql_query = "SELECT * FROM dinnerTable WHERE tableStatus=?";
+        try {
+            return JdbcUtils.getQueryRunner().query(sql_query,new BeanListHandler<DinnerTable>(DinnerTable.class),state);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

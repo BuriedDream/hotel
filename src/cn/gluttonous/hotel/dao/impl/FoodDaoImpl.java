@@ -119,14 +119,53 @@ public class FoodDaoImpl implements FoodDaoInterface {
             throw new RuntimeException(e);
         }
     }
-//    public List<Food> query(String keyword) {
-//        String sel_select = "SELECT * FROM food WHERE foodName=?";
-//        try {
-//            return JdbcUtils.getQueryRunner().query(sel_select,new BeanListHandler<Food>(Food.class),"%"+keyword+"%");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
+    /**
+     * 模糊查询分页
+     *
+     * @param pageBean
+     * @param keyword
+     */
+    @Override
+    public void query(PageBean<FoodListEntity> pageBean, String keyword) {
+        /**
+         * 总页数
+         */
+        int totalCount = this.getListTotalCount(pageBean);
+        pageBean.setTotalCount(totalCount);
+
+        /**
+         * 设置PageBean基础数据
+         *      如果当前页 大于 1  则当前页为 1 <br/>
+         *      如果当前页大于最大页数  则当前页为 最大页数
+         *
+         */
+        if(pageBean.getCurrentPage()<1){
+            pageBean.setCurrentPage(1);
+        }
+        else if(pageBean.getCurrentPage() > pageBean.getTotalPage()){
+            pageBean.setCurrentPage(pageBean.getTotalPage());
+        }
+
+        /**
+         * 得到分页的页数条件
+         * @ index 起始页
+         * @ count 每页记录数
+         */
+        int index = (pageBean.getCurrentPage() - 1) * pageBean.getPageCount();
+        int count = pageBean.getPageCount();
+
+        String sel_select = "SELECT * FROM food WHERE foodName LIKE ? LIMIT ?,?";
+
+        try {
+            List<FoodListEntity> foodListEntities = JdbcUtils.getQueryRunner().query(sel_select,new BeanListHandler<FoodListEntity>(FoodListEntity.class),"%"+keyword+"%",index,count);
+            pageBean.setPageData(foodListEntities);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
     /**
      * 查询指定菜系的所有菜品
@@ -157,6 +196,7 @@ public class FoodDaoImpl implements FoodDaoInterface {
          */
         int totalCount = this.getTotalCount(foodPageBean);
         foodPageBean.setTotalCount(totalCount);
+        foodPageBean.setTotalPage(6);
 
         /**
          * 设置PageBean基础数据
@@ -188,18 +228,18 @@ public class FoodDaoImpl implements FoodDaoInterface {
          */
         List<Object> params = new ArrayList<>();
 
-        sql_count.append("SELECT");
+        sql_count.append(" SELECT");
         sql_count.append("     f.foodName,");
         sql_count.append("     f.foodTypeId,");
         sql_count.append("     f.Price,");
         sql_count.append("     f.memberPrice,");
         sql_count.append("     f.remark,");
         sql_count.append("     f.image,");
-        sql_count.append("     ft.TypeName,");
-        sql_count.append("FROM ");
+        sql_count.append("     ft.TypeName ");
+        sql_count.append(" FROM ");
         sql_count.append("     food f,");
         sql_count.append("     foodType ft ");
-        sql_count.append("WHERE 1=1");
+        sql_count.append(" WHERE 1=1");
         sql_count.append("      AND f.foodTypeId=ft.id ");
 
         /**

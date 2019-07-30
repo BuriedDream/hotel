@@ -51,4 +51,11 @@ public interface DinnerTableDaoInterface {
      * @return
      */
     public List<DinnerTable> query(String keyWord);
+
+    /**
+     * 获取指定状态的餐桌
+     * @param state
+     * @return
+     */
+    public List<DinnerTable> queryByStatus(int state);
 }

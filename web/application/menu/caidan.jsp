@@ -1,4 +1,6 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -6,118 +8,55 @@
 	
 <title>无线点餐平台</title>
 
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
-	<link href="style/css/index.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/application/style/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/application/style/js/page_common.js"></script>
+
+<link href="${pageContext.request.contextPath }/application/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/application/style/css/index_1.css" />
+<link href="${pageContext.request.contextPath }/application/style/css/index.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	// 参数： 当前页
+	function gotoPage(page){
+				
+		// 先获取当前表单对象
+		var frm = document.forms[0];
+		frm.action = "${pageContext.request.contextPath }/food?method=foodDetail" + "&currentPage="+page ;
+		alert(frm.action);
+		frm.submit();
+	
+	}
+
+</script>
 </head>
+
 <body style="text-align: center">
 	<div id="all">
 		<div id="menu">
 			<!-- 显示菜品的div -->
 			<div id="top">
 				<ul>
-					<!-- 循环列出餐品 -->
-					
+					<!-- 循环列出菜品 -->
+					<c:forEach var="food" items="${requestScope.pb.pageData}">
 						<li>
 							<dl>
 								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/baizhuoxia.jpg" />
+									<a href="${pageContext.request.contextPath }/app/caixiangxi.jsp">
+										<img width="214px" height="145px" src="${pageContext.request.contextPath }/app/style/images/baizhuoxia.jpg" />
 									</a>
 								</dt>
 								<dd class="f1">
-									<a href="caixiangxi.html">白灼虾</a>
+									<a href="#">${food.foodName }</a>
 								</dd>
 								<dd class="f2">
-									<a href="caixiangxi.html">&yen;36.0</a>
+									<a href="${pageContext.request.contextPath }/app/caixiangxi.jsp">&yen;${food.price }</a>
 								</dd>
 							</dl>
 						</li>
-					
-						<li>
-							<dl>
-								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/baiqieji.jpg" />
-									</a>
-								</dt>
-								<dd class="f1">
-									<a href="caixiangxi.html">白切鸡</a>
-								</dd>
-								<dd class="f2">
-									<a href="caixiangxi.html">&yen;68.0</a>
-								</dd>
-							</dl>
-						</li>
-					
-						<li>
-							<dl>
-								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/kaoruzhu.JPG" />
-									</a>
-								</dt>
-								<dd class="f1">
-									<a href="caixiangxi.html">烤乳猪</a>
-								</dd>
-								<dd class="f2">
-									<a href="caixiangxi.html">&yen;68.0</a>
-								</dd>
-							</dl>
-						</li>
-					
-						<li>
-							<dl>
-								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/shaoe.jpg" />
-									</a>
-								</dt>
-								<dd class="f1">
-									<a href="caixiangxi.html">烧鹅</a>
-								</dd>
-								<dd class="f2">
-									<a href="caixiangxi.html">&yen;68.0</a>
-								</dd>
-							</dl>
-						</li>
-					
-						<li>
-							<dl>
-								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/helandou.jpg" />
-									</a>
-								</dt>
-								<dd class="f1">
-									<a href="caixiangxi.html">猪肉荷兰豆</a>
-								</dd>
-								<dd class="f2">
-									<a href="caixiangxi.html">&yen;68.0</a>
-								</dd>
-							</dl>
-						</li>
-					
-						<li>
-							<dl>
-								<dt>
-									<a href="caixiangxi.html">
-										<img width="214px" height="145px" src="style/images/huangbuchaodan.jpg" />
-									</a>
-								</dt>
-								<dd class="f1">
-									<a href="caixiangxi.html">黄埔炒蛋</a>
-								</dd>
-								<dd class="f2">
-									<a href="caixiangxi.html">&yen;68.0</a>
-								</dd>
-							</dl>
-						</li>
+					</c:forEach>
+						
 					
 				</ul>
 			</div>
@@ -134,16 +73,17 @@
 					
 				
 				<div id="btn">
-					<ul>
-						<!-- 参看 百度, 谷歌是 左 5 右 4 -->
-						
-							<li><a
-								href="#">1</a></li>
-						
-							<li><a
-								href="#">2</a></li>
-						
-					</ul>
+					当前${pb.currentPage }/${pb.totalPage }页 &nbsp;
+					<!-- 
+					<a href="${pageContext.request.contextPath }/food?method=foodDetail&currentPage=1">首页</a>
+					<a href="${pageContext.request.contextPath }/food?method=foodDetail&currentPage=${pb.currentPage-1}">上一页</a>
+					<a href="${pageContext.request.contextPath }/food?method=foodDetail&currentPage=${pb.currentPage+1}">下一页</a>
+					<a href="${pageContext.request.contextPath }/food?method=foodDetail&currentPage=${pb.totalPage}">尾页</a>
+					 -->
+					 <a href="javascript:gotoPage(1)">首页</a>
+					 <a href="javascript:gotoPage(${pb.currentPage-1 })">上一页</a>
+					 <a href="javascript:gotoPage(${pb.currentPage+1 })">下一页</a>
+					 <a href="javascript:gotoPage(${pb.totalPage })">尾页</a>
 				</div>
 				
 					
@@ -161,55 +101,49 @@
 
 		<!-- 右边菜系列表，菜品搜索框  -->
 		<div id="dish_class">
+		
 			<div id="dish_top">
 				<ul>
 				<li class="dish_num"></li>
 					<li>
-						<a href="clientOrderList.html">
-							<img src="style/images/call2.gif" />
+						<a href="${pageContext.request.contextPath }/application/clientOrderList.jsp">
+							<img src="${pageContext.request.contextPath }/application/style/images/call2.gif" />
 						</a>
 					</li>
 				</ul>
 			</div>
-
+	<form action="${pageContext.request.contextPath }/food?method=foodDetail" method="post">
+	
 			<div id="dish_2">
 				<ul>
 					
+					<!-- 迭代菜系列表 -->
+					<c:forEach var="foodType" items="${requestScope.listFoodType}">
 						<li>
-							<a href="caidan.html">粤菜</a>
+							<a href="${pageContext.request.contextPath }/food?method=foodDetail&foodTypeId=${foodType.id}">${foodType.typeName }</a>
+							<input type="hidden" name="foodTypeId" value="${foodType.id}">
 						</li>
-					
-						<li>
-							<a href="chuancai.html">川菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">湘菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">东北菜</a>
-						</li>
-					
+					</c:forEach>
+						
 				</ul>
 			</div>
 			<div id="dish_3">
 				<!-- 搜索菜品表单  -->
-				<form action="#" method="post">
+				
 					<table width="166px">
 						<tr>
 							<td>
 								<input type="text" id="dish_name" name="foodName" class="select_value" /> 
-								<input type="hidden" value="selectFood" name="method">
+								<%--<input type="hidden" value="selectFood" name="method">--%>
 							</td>
 						</tr>
 						<tr>
-							<td><input type="submit" id="sub" value="" /></td>
+							<td><input type="submit" id="sub" value="搜索" /></td>
 						</tr>
 						<tr>
 							<td>
 								<a href="#">
-									<img src="style/images/look.gif" />
+									<img src="${pageContext.request.contextPath }/application/style/images/look.gif" />
 								</a>
 							</td>
 						</tr>

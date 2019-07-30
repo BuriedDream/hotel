@@ -75,6 +75,17 @@ public class DinnerTableServiceImpl implements DinnerTableServiceInterface{
     }
 
     /**
+     * 查找指定状态的餐桌
+     *
+     * @param state
+     * @return
+     */
+    @Override
+    public List<DinnerTable> query(int state) {
+        return dinnerTableDao.queryByStatus(state);
+    }
+
+    /**
      * 改变餐桌状态
      *
      * @param id
